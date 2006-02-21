@@ -122,7 +122,7 @@ L<Catalyst>, L<Catalyst::Base>, L<XML::LibXSLT>.
 
 =head1 AUTHOR
 
-Martin Grigorov, C<mcgregory@e-card.bg>
+Martin Grigorov, C<mcgregory {at} e-card {dot} bg>
 
 =head1 COPYRIGHT
 

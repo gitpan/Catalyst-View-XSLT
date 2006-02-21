@@ -1,0 +1,24 @@
+---
+name: Catalyst-View-XSLT
+version: 0.02
+author: ~
+abstract: XSLT View Class
+license: perl
+requires:
+  Catalyst: 5.5
+  Data::Dumper: 2
+  File::Spec: 3.1
+  Path::Class: 0.12
+  XML::LibXSLT: 1.52
+build_requires:
+  FindBin: 1.4
+  Test::More: 0.6
+provides:
+  Catalyst::Helper::View::XSLT:
+    file: lib/Catalyst/Helper/View/XSLT.pm
+  Catalyst::View::XSLT:
+    file: lib/Catalyst/View/XSLT.pm
+    version: 0.02
+  Catalyst::View::XSLT::XML::LibXSLT:
+    file: lib/Catalyst/View/XSLT/XML/LibXSLT.pm
+generated_by: Module::Build version 0.26

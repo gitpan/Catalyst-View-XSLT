@@ -6,7 +6,7 @@ use Catalyst::View::XSLT::XML::LibXSLT;
 use Data::Dumper;
 use File::Spec;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # check if this is a MS Windows 
 my $isMS = $^O eq 'MSWin32';
@@ -26,7 +26,7 @@ Catalyst::View::XSLT - XSLT View Class
     use base 'Catalyst::View::XSLT';
 
     __PACKAGE__->config(
-	  # paths to search the templates
+	  # paths to the directories with templates
 	  INCLUDE_PATH => [
 	    MyApp->path_to( 'root', 'xslt' ),
 		MyApp->path_to( 'templates', 'xsl' ),
@@ -277,7 +277,7 @@ sub process {
 
 	if ($isMS) {
 
-        my $error = 'MS Windows is not yet implemented.';
+        my $error = 'XSLT View for MS Windows is not yet implemented.';
         $c->log->error($error);
         $c->error($error);
    	    return 0;
@@ -314,7 +314,7 @@ sub process {
 			return 0;
 		}
 		
-		$c->log->debug("processing...") if $c->debug;
+		$c->log->debug("Processing...") if $c->debug;
 		my ($output, $error) = $processor->process($c, $template);
 
 		if ($error) {
@@ -388,7 +388,7 @@ L<Catalyst>, L<Catalyst::Base>, L<XML::LibXSLT>.
 
 =head1 AUTHOR
 
-Martin Grigorov, C<mcgregory@e-card.bg>
+Martin Grigorov, C<mcgregory {at} e-card {dot} bg>
 
 =head1 COPYRIGHT
 

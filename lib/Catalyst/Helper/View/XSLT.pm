@@ -33,7 +33,7 @@ L<Catalyst::Response>, L<Catalyst::Helper>
 
 =head1 AUTHOR
 
-Martin Grigorov, C<mcgregory@e-card.bg>
+Martin Grigorov, C<mcgregory {at} e-card {dot} bg>
 
 =head1 LICENSE
 
@@ -44,6 +44,8 @@ the same terms as perl itself.
 
 1;
 
+=begin pod_to_ignore
+
 __DATA__
 
 __compclass__
@@ -52,7 +54,10 @@ package [% class %];
 use strict;
 use base 'Catalyst::View::XSLT';
 
+# example configuration
+
 # __PACKAGE__->config(
+#   # relative paths to the directories with templates
 #	INCLUDE_PATH => [
 #		MyApp->path_to( 'root', 'xslt' ),
 #		MyApp->path_to( 'templates', 'xsl' ),
