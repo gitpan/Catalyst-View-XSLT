@@ -2,6 +2,7 @@ package Catalyst::View::XSLT::XML::LibXSLT;
 
 use strict;
 use warnings;
+use UNIVERSAL::require;
 
 =head1 NAME
 
@@ -37,7 +38,7 @@ sub new
 	};
 	
 	if ($@) {
-		$c->error('Could not use XML::LibXSLT: $@');
+		$c->error('Could not use XML::LibXSLT: ' . $@);
 		return undef;
 	}
 

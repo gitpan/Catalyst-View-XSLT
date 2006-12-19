@@ -1,3 +1,5 @@
+0.03  Tue Dec 19 20:00:00 2006
+		- Explicitly use UNIVERSAL::require
 0.02  Fri Feb 20 21:00:00 2006
         - POD improvements
 0.01  Fri Feb 3 22:00:00 2006

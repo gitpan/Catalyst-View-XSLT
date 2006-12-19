@@ -5,11 +5,12 @@ my %arguments = (
 	license            => 'perl',
 	module_name        => 'Catalyst::View::XSLT',
 	requires           => {
-		'Catalyst'			=> 5.50,
+		'Catalyst'			=> 5.70,
 		'XML::LibXSLT'		=> 1.52, # for perl extension functions
 		'File::Spec'		=> 3.10,
 		'Data::Dumper'		=> 2.00,
 		'Path::Class'		=> 0.12,
+		'UNIVERSAL::require'    => 0.10,
 	},
 	build_requires      => {
 		'Test::More'		=> 0.60,
