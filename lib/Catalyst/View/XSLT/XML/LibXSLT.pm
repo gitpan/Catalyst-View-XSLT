@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use UNIVERSAL::require;
 
+our $VERSION = '0.04';
+
 =head1 NAME
 
 Catalyst::View::XSLT::XML::LibXSLT - An implementation for Catalyst::View::XSLT

@@ -1,9 +1,11 @@
 ---
 name: Catalyst-View-XSLT
-version: 0.03
-author: ~
+version: 0.04
+author: []
 abstract: XSLT View Class
 license: perl
+resources:
+  license: http://dev.perl.org/licenses/
 requires:
   Catalyst: 5.7
   Data::Dumper: 2
@@ -17,9 +19,14 @@ build_requires:
 provides:
   Catalyst::Helper::View::XSLT:
     file: lib/Catalyst/Helper/View/XSLT.pm
+    version: 0.04
   Catalyst::View::XSLT:
     file: lib/Catalyst/View/XSLT.pm
-    version: 0.03
+    version: 0.04
   Catalyst::View::XSLT::XML::LibXSLT:
     file: lib/Catalyst/View/XSLT/XML/LibXSLT.pm
-generated_by: Module::Build version 0.26
+    version: 0.04
+generated_by: Module::Build version 0.2806
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

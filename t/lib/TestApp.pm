@@ -6,7 +6,7 @@ use warnings;
 use Catalyst; # qw/-Debug/;
 use Path::Class;
 
-our $VERSION = '0.01';
+our $VERSION = '0.04';
 
 my $default_message = 'Hi, Catalyst::View::XSLT user';
 

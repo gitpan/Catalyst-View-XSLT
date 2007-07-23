@@ -18,3 +18,5 @@ t/lib/TestApp/root/testParams.xsl
 t/lib/TestApp/root/testRegisterFunction.xsl
 t/lib/TestApp/View/XSLT/XML/LibXSLT.pm
 META.yml
+Makefile.PL
+README

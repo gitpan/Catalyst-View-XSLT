@@ -2,6 +2,8 @@ package Catalyst::Helper::View::XSLT;
 
 use strict;
 
+our $VERSION = '0.04';
+
 =head1 NAME
 
 Catalyst::Helper::View::XSLT - Helper for XSLT Views
@@ -43,8 +45,6 @@ the same terms as perl itself.
 =cut
 
 1;
-
-=begin pod_to_ignore
 
 __DATA__
 
