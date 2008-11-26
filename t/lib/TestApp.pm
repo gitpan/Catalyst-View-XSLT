@@ -71,6 +71,16 @@ sub testNoXSLT : Local {
     $c->stash->{message} = $message;
 }
 
+sub testRender : Local {
+    my ($self, $c) = @_;
+
+    my $message = $c->request->param('message') || $c->config->{default_message};
+
+    my $out = $c->view('XSLT')->render($c, $c->req->param('template'), {xml => "<dummy-root>$message</dummy-root>"});
+
+    $c->stash->{xml} = "<dummy-root>$out</dummy-root>";
+}
+
 sub end : Private {
     my ($self, $c) = @_;
 

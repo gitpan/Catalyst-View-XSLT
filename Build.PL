@@ -10,7 +10,6 @@ my %arguments = (
 		'File::Spec'		=> 3.10,
 		'Data::Dumper'		=> 2.00,
 		'Path::Class'		=> 0.12,
-		'UNIVERSAL::require'    => 0.10,
 	},
 	build_requires      => {
 		'Test::More'		=> 0.60,

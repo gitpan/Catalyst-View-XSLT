@@ -11,12 +11,14 @@ t/04testParams.t
 t/05includepath.tt
 t/06noXsl.t
 t/07testRegisterFunction.t
+t/08testRender.t
 t/lib/TestApp.pm
 t/lib/TestApp/root/additional/testIncludePath.xsl
 t/lib/TestApp/root/testNoXSLT.xsl
 t/lib/TestApp/root/testParams.xsl
 t/lib/TestApp/root/testRegisterFunction.xsl
+t/lib/TestApp/root/testRender.xsl
 t/lib/TestApp/View/XSLT/XML/LibXSLT.pm
-META.yml
 Makefile.PL
 README
+META.yml
