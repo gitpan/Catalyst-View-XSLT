@@ -7,7 +7,7 @@ use Catalyst::View::XSLT::XML::LibXSLT;
 use Data::Dumper;
 use File::Spec;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 # check if this is a MS Windows 
 my $isMS = $^O eq 'MSWin32';
@@ -221,7 +221,7 @@ C<< $c->stash >> otherwise.
 sub render {
     my ( $self, $c, $template, $args ) = @_;
 
-    unless ( -e $template) {
+    unless ( $template =~ m/\</ || -e $template ) {
         my ($tmplFullPath, $error) = $self->_searchInIncPath($c, $template);
 
         if (defined $error) {

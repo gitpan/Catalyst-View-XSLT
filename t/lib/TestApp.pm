@@ -81,6 +81,29 @@ sub testRender : Local {
     $c->stash->{xml} = "<dummy-root>$out</dummy-root>";
 }
 
+sub test_template_string : Local {
+    my ($self, $c) = @_;
+
+    my $message = $c->request->param('message') || $c->config->{default_message};
+
+    $c->stash->{xml} = "<dummy-root>$message</dummy-root>";
+
+    $c->stash->{template} = <<'EOXSL';
+<?xml version="1.0"?>
+<xsl:stylesheet 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	version="1.0">
+
+	<xsl:output method="text" />
+
+	<xsl:template match="/">
+			<xsl:value-of select="dummy-root" />
+	</xsl:template>
+
+</xsl:stylesheet>
+EOXSL
+}
+
 sub end : Private {
     my ($self, $c) = @_;
 

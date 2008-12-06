@@ -1,3 +1,6 @@
+0.06  Sat Dec  6 15:34:42 2008
+        - fix support for xsl template strings and add a corresponding test
+
 0.05  Tue Nov 25 23:38:40 2008
         - POD enhancements
         - just utilize require and get rid of UNIVERSAL::require dependency

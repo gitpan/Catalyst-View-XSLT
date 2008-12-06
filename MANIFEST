@@ -12,6 +12,7 @@ t/05includepath.tt
 t/06noXsl.t
 t/07testRegisterFunction.t
 t/08testRender.t
+t/09_template_string.t
 t/lib/TestApp.pm
 t/lib/TestApp/root/additional/testIncludePath.xsl
 t/lib/TestApp/root/testNoXSLT.xsl
