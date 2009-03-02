@@ -1,6 +1,6 @@
 ---
 name: Catalyst-View-XSLT
-version: 0.06
+version: 0.07
 author:
   - 'Simon Bertrang, E<lt>simon.bertrang@puzzworks.comE<gt>'
 abstract: XSLT View Class
@@ -19,11 +19,13 @@ build_requires:
 provides:
   Catalyst::Helper::View::XSLT:
     file: lib/Catalyst/Helper/View/XSLT.pm
+    version: 0.07
   Catalyst::View::XSLT:
     file: lib/Catalyst/View/XSLT.pm
-    version: 0.06
+    version: 0.07
   Catalyst::View::XSLT::XML::LibXSLT:
     file: lib/Catalyst/View/XSLT/XML/LibXSLT.pm
+    version: 0.07
 generated_by: Module::Build version 0.280801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

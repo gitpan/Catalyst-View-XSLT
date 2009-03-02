@@ -3,6 +3,8 @@ package Catalyst::View::XSLT::XML::LibXSLT;
 use strict;
 use warnings;
 
+our $VERSION = '0.07';
+
 =head1 NAME
 
 Catalyst::View::XSLT::XML::LibXSLT - An implementation for Catalyst::View::XSLT
@@ -70,7 +72,7 @@ sub new
 =cut
 
 sub process {
-    my ($self, $template, $args) = @_;
+    my ($self, $template, $args, $base) = @_;
 
     my ($result, $error) = ('', undef);
 
@@ -82,14 +84,22 @@ sub process {
 
         my $xml = delete $args->{xml};
 
-        if ($xml =~ /\</) {
+        if ($xml =~ m/\</) {
             $xmlDocument = $xmlParser->parse_string($xml);
+        } elsif (ref($xml) && $xml->isa('GLOB')) {
+            $xmlDocument = $xmlParser->parse_fh($xml);
+        } elsif (ref($xml) && $xml->isa('XML::LibXML::Document')) {
+            $xmlDocument = $xml;
         } else {
             $xmlDocument = $xmlParser->parse_file($xml);
         }
 
         if ($template =~ m/\</) {
-            $xsltStylesheet = $xmlParser->parse_string($template);
+            $xsltStylesheet = $xmlParser->parse_string($template, $base);
+        } elsif (ref($template) && $template->isa('GLOB')) {
+            $xsltStylesheet = $xmlParser->parse_fh($template, $base);
+        } elsif (ref($template) && $template->isa('XML::LibXML::Document')) {
+            $xsltStylesheet = $template;
         } else {
             $xsltStylesheet = $xmlParser->parse_file($template);
         }

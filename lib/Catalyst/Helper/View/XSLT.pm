@@ -3,6 +3,8 @@ package Catalyst::Helper::View::XSLT;
 use strict;
 use warnings;
 
+our $VERSION = '0.07';
+
 =head1 NAME
 
 Catalyst::Helper::View::XSLT - Helper for XSLT Views

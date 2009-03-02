@@ -1,3 +1,8 @@
+0.07  Mon Mar  2 18:19:27 2009
+	- put $VERSIONs back to all files (RT#43774)
+	- add support to accept strings, filehandles and objects
+	  (XML::LibXML::Document) as templates and data
+
 0.06  Sat Dec  6 15:34:42 2008
         - fix support for xsl template strings and add a corresponding test
 

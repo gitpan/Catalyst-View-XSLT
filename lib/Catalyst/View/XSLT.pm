@@ -7,7 +7,7 @@ use Catalyst::View::XSLT::XML::LibXSLT;
 use Data::Dumper;
 use File::Spec;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 # check if this is a MS Windows 
 my $isMS = $^O eq 'MSWin32';
@@ -216,20 +216,31 @@ Renders the template specified via C<< $template >>.
 The template parameters are set to C<%$args> if $args is a hashref, or 
 C<< $c->stash >> otherwise.
 
+Templates are accepted as strings, filehandles or objects of the corresponding
+view types (L<XML::LibXML::Document> for example).
+
 =cut
 
 sub render {
     my ( $self, $c, $template, $args ) = @_;
+    my $basePath;
 
-    unless ( $template =~ m/\</ || -e $template ) {
-        my ($tmplFullPath, $error) = $self->_searchInIncPath($c, $template);
+    unless ( $template =~ m/\</ || $template->isa('GLOB') || -e $template ||
+      ( ref($template) && !$template->isa('Path::Class::File') ) ) {
+        my $error;
+
+        ($basePath, $error) = $self->_searchInIncPath($c, $template);
 
         if (defined $error) {
             $c->error("Template [$template] does not exists in include path");
             return 0;
         } else {
-            $template = $tmplFullPath;
+            $template = File::Spec->catfile($basePath, $template);
         }
+    }
+
+    unless ($basePath) {
+        $basePath = $c->config->{root};
     }
 
     my $vars = { 
@@ -245,14 +256,15 @@ sub render {
 
     # if xml is not string (therefore is a file (what about file descriptors ?!)) 
     # and is not existsting in the file system
-    if ($xml !~ m/\</ && ! -e $xml) {
-        my ($xmlFullPath, $error) = $self->_searchInIncPath($c, $xml);
+    unless ( $xml =~ m/\</ || $xml->isa('GLOB') || -e $xml ||
+      ( ref($xml) && !$xml->isa('Path::Class::File') ) ) {
+        my ($incPath, $error) = $self->_searchInIncPath($c, $xml);
 
         if (defined $error) {
-            $c->error("Template [$template] does not exists in include path");
+            $c->error("XML file [$xml] does not exists in include path");
             return undef;
         } else {
-            $vars->{xml} = $xmlFullPath;
+            $vars->{xml} = File::Spec->catfile($incPath, $xml);
         }
     }
 
@@ -287,7 +299,7 @@ sub render {
     }
 
     $c->log->debug("Processing...") if $c->debug;
-    my ($output, $error) = $processor->process($template, $vars);
+    my ($output, $error) = $processor->process($template, $vars, $basePath);
 
     if ($error) {
         chomp $error;
@@ -355,24 +367,27 @@ sub _searchInIncPath {
 
     my $arefIncludePath = $self->{CONFIG}->{'INCLUDE_PATH'};
 
-    unshift( @{ $arefIncludePath }, @{ $c->stash->{additional_template_paths} } )
-      if (ref $c->stash->{additional_template_paths} eq 'ARRAY');
+    if (ref $c->stash->{additional_template_paths} eq 'ARRAY') {
+        unshift( @{ $arefIncludePath },
+          @{ $c->stash->{additional_template_paths} } );
+    }
 
     foreach my $incEntry ( @{ $arefIncludePath} ) {
 
         $c->log->debug( "Going to search for file [$filename] in [$incEntry]" ) if $c->debug;
         my $tmpTemplateName = '';
+        my $incPath = '';
 
         if (ref $incEntry eq 'Path::Class::File') {
-            $tmpTemplateName = File::Spec->catfile($incEntry->absolute, $filename);
+            $incPath = $incEntry->absolute();
         } else {
-            $tmpTemplateName = File::Spec->catfile($incEntry, $filename);
+            $incPath = $incEntry;
         }
 
-        if (-e $tmpTemplateName) {
+        if (-e File::Spec->catfile($incPath, $filename)) {
 
             $c->log->debug( "File [$filename] found in [$incEntry]") if $c->debug;
-            return ($tmpTemplateName, undef);
+            return ($incPath, undef);
         }
 
     }

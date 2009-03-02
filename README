@@ -119,6 +119,9 @@ METHODS
         parameters are set to %$args if $args is a hashref, or "$c->stash"
         otherwise.
 
+        Templates are accepted as strings, filehandles or objects of the
+        corresponding view types (XML::LibXML::Document for example).
+
     process
         Renders the template specified in "$c->stash->{template}" or
         "$c->action". Calls "render" to perform actual rendering. Template
