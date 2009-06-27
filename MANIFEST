@@ -22,6 +22,7 @@ t/12_xml_io_handle.t
 t/13_xml_libxml_document.t
 t/14_xml_path_class.t
 t/15_template_import.t
+t/16_template_render_filename.t
 t/lib/TestApp.pm
 t/lib/TestApp/root/additional/testIncludePath.xsl
 t/lib/TestApp/root/testImport.xsl
@@ -29,4 +30,5 @@ t/lib/TestApp/root/testNoXSLT.xsl
 t/lib/TestApp/root/testParams.xsl
 t/lib/TestApp/root/testRegisterFunction.xsl
 t/lib/TestApp/root/testRender.xsl
+t/lib/TestApp/root/testRenderFilename.xsl
 t/lib/TestApp/View/XSLT/XML/LibXSLT.pm

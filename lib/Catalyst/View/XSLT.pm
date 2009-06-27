@@ -7,7 +7,7 @@ use Catalyst::View::XSLT::XML::LibXSLT;
 use Data::Dumper;
 use File::Spec;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 # check if this is a MS Windows 
 my $isMS = $^O eq 'MSWin32';
@@ -225,7 +225,7 @@ sub render {
     my ( $self, $c, $template, $args ) = @_;
     my $basePath;
 
-    unless ( $template =~ m/\</ || $template->isa('GLOB') || -e $template ||
+    unless ( $template =~ m/\</ || (ref($template) && $template->isa('GLOB')) || -e $template ||
       ( ref($template) && !$template->isa('Path::Class::File') ) ) {
         my $error;
 
@@ -256,7 +256,7 @@ sub render {
 
     # if xml is not string (therefore is a file (what about file descriptors ?!)) 
     # and is not existsting in the file system
-    unless ( $xml =~ m/\</ || $xml->isa('GLOB') || -e $xml ||
+    unless ( $xml =~ m/\</ || (ref($template) && $xml->isa('GLOB')) || -e $xml ||
       ( ref($xml) && !$xml->isa('Path::Class::File') ) ) {
         my ($incPath, $error) = $self->_searchInIncPath($c, $xml);
 

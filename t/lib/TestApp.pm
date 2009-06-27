@@ -189,6 +189,19 @@ sub test_template_import : Local {
     $c->stash->{template} = $template;
 }
 
+sub test_template_render_filename : Local {
+    my ($self, $c) = @_;
+
+    my $message = $c->request->param('message') || $c->config->{default_message};
+
+    my $template = $c->req->param('template');
+
+    my $out = $c->view('XSLT::XML::LibXSLT')->render($c, $template, {xml => "<dummy-root>$message</dummy-root>"});
+
+    $c->stash->{template} = $template;
+
+    $c->stash->{xml} = $out;
+}
 
 sub end : Private {
     my ($self, $c) = @_;
