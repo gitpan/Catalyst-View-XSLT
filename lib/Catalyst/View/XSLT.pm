@@ -7,7 +7,7 @@ use Catalyst::View::XSLT::XML::LibXSLT;
 use Data::Dumper;
 use File::Spec;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 # check if this is a MS Windows 
 my $isMS = $^O eq 'MSWin32';

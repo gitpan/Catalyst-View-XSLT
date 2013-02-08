@@ -3,7 +3,7 @@ package Catalyst::View::XSLT::XML::LibXSLT;
 use strict;
 use warnings;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 =head1 NAME
 
@@ -84,12 +84,12 @@ sub process {
 
         my $xml = delete $args->{xml};
 
-        if ($xml =~ m/\</) {
-            $xmlDocument = $xmlParser->parse_string($xml);
-        } elsif (ref($xml) && $xml->isa('GLOB')) {
+        if (ref($xml) && $xml->isa('GLOB')) {
             $xmlDocument = $xmlParser->parse_fh($xml);
         } elsif (ref($xml) && $xml->isa('XML::LibXML::Document')) {
             $xmlDocument = $xml;
+        } elsif ($xml =~ m/\</) {
+            $xmlDocument = $xmlParser->parse_string($xml);
         } else {
             $xmlDocument = $xmlParser->parse_file($xml);
         }

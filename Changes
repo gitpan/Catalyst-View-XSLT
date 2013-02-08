@@ -1,6 +1,11 @@
+0.09  Thu Feb  7 20:44:55 CET 2013
+	- prevent stringified document object errors (RT#80428) with
+	  a patch from Jozef Kutej
+
 0.08  Mon Apr  6 10:07:55 2009
 	- add test to check direct calls to render() work
 	- check for object references to prevent isa() on undefined values (RT#44783 from PEPL)
+
 0.07  Mon Mar  2 18:19:27 2009
 	- put $VERSIONs back to all files (RT#43774)
 	- add support to accept strings, filehandles and objects
